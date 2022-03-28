@@ -1,6 +1,0 @@
-Adult F1,N4,,,,
-Banana F3,T1,,,,
-Blood F2,N2,,,,
-CTG F1,N2,,,,
-Diabetes F3,LSC,,,,
-Sonar F1,N4,,,,

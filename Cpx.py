@@ -13,7 +13,7 @@ import csv, random, os
 import numpy as np
 import matplotlib.pylab as plt
 import scipy.stats as st
-os.environ['R_HOME'] = '/home/marcos/miniconda3/envs/l/lib/R'
+os.environ['R_HOME'] = 'c:\\users\\marca\\anaconda3\\envs\\l\\lib\\R'
 # env = os.environ.copy()
 # env['R_HOME'] = '/home/marcos/miniconda3/envs/l/lib/R'
 
@@ -30,7 +30,6 @@ import rpy2.robjects.packages as rpackages
 ecol = rpackages.importr('ECoL')
 import rpy2.robjects as robjects
 
-
 def mapr(indi):
     x = ["F1,N1", "F1,N2", "F1,N3", "F1,N4", "F1,T1", "F1,LSC",
          "F1v,N1", "F1v,N2", "F1v,N3", "F1v,N4", "F1v,T1", "F1v,LSC",
@@ -38,7 +37,6 @@ def mapr(indi):
          "F3,N1", "F3,N2", "F3,N3", "F3,N4", "F3,T1", "F3,LSC",
          "F4,N1", "F4,N2", "F4,N3", "F4,N4", "F4,T1", "F4,LSC"]
     return x[indi]
-
 
 def open_data(base_name, local_data):
     dataset_file = Marff.abre_arff(local_data + base_name + ".arff")
@@ -119,7 +117,7 @@ def biuld_bags(y_train, X_train=None, X_data=None, y_data=None, ind=None, types=
 
 
 def generate_csv(dic):
-    # grava um arquivo csv com o nome dos atributos na primeira linha, e das instancias, arquivo para script do R
+    # grava um arquivo csv com o name dos atributos na primeira linha, e das instancias, arquivo para script do R
     with open("/media/marcos/Data/Tese/teste.csv", 'w') as f:
         w = csv.writer(f)
         w.writerow(dic['class'])
@@ -182,6 +180,7 @@ def complexity_data3(X_data, y_data, grupo, tipo=None):
 
     complex = complex.tolist()
     del dfx, dfy
+
     return complex
 
 
@@ -271,6 +270,7 @@ def PolyArea(x, y):  # fórmula Shoelace
     exit(0)
     return temp, tem3
 
+
 def contorno(x, y):
     import numpy as np
     import matplotlib.pyplot as plt
@@ -289,6 +289,8 @@ def contorno(x, y):
     ax.contour(X, Y)
 
     plt.show()
+
+
 def densidade(x,y):
     import numpy as np
     import matplotlib.pyplot as plt
@@ -474,7 +476,7 @@ def biuld_classifier_over(X, y, X_val, y_val, tam):
 
 
 def voting_classifier(pool, X_val, y_val):
-    voting = EnsembleVoteClassifier(clfs=pool, voting='hard', refit=False)
+    voting = EnsembleVoteClassifier(clfs=pool, voting='hard')
     voting.fit(X_val, y_val)
     result = voting.score(X_val, y_val)
     return result
@@ -560,7 +562,7 @@ def dispersion2(complexity):
     return result
 
 
-def dispersion_linear(complexity):
+def dispersion_line(complexity):
     # print(complexity)
 
     """
@@ -572,7 +574,6 @@ def dispersion_linear(complexity):
 
     complexity = list(complexity)
     complexity = np.array(complexity)
-    print((complexity))
     n = (len(complexity)) - 1
     complexity = complexity.T
 
@@ -725,14 +726,14 @@ def routine_save_bags(local_dataset, local, base_name, iteration):
 
 def open_bag(local_bag, base_name):
     bags = dict()
-    bags['nome'] = list()
+    bags['name'] = list()
     bags['inst'] = list()
     with open(local_bag + base_name + '.csv', 'r') as f:
         reader = csv.reader(f)
         indx = list(reader)
         # print(indx)
     for i in indx:
-        bags['nome'].append(i[0])
+        bags['name'].append(i[0])
         bags['inst'].append(i[1:])
 
     return bags
@@ -745,7 +746,7 @@ def biuld_x_y(indx_bag, X, y):
     :param vet_classes: false, retorna o vetor de classes
     :return: X_data, y_data
     '''
-    # global nome_base, classes, caminho_base
+    # global name_base, classes, caminho_base
     X_data = []
     y_data = []
     # print(len(X))

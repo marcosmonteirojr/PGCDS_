@@ -1,7 +1,5 @@
 import arff, numpy
 
-
-
 def abre_arff(caminho):
     """
 
